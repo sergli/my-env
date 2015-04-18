@@ -147,16 +147,16 @@ set foldminlines=8
 
 
 
-set runtimepath+=~/.vim/bundle/vundle/
+set runtimepath+=~/.vim/bundle/Vundle.vim
 " Plugins 
-call vundle#rc()
+call vundle#begin()
 
 "Bundle 'scrooloose/syntastic'
 
 
 " let Vudnle manage Vundle
 " required !
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 
 Bundle 'vim-scripts/bufkill.vim'
 	cnoremap bw BW
@@ -219,9 +219,7 @@ Bundle 'fholgado/minibufexpl.vim'
 
 Bundle '2072/PHP-Indenting-for-VIm'
 
-" По табу - фокус на другой сплит
-nnoremap <Tab> <C-w>w
-
+call vundle#end()
 
 filetype on
 filetype plugin indent on	" required!
@@ -230,3 +228,6 @@ syntax on;
 set scrolloff=20
 
 set pastetoggle=<F12>
+"
+" По табу - фокус на другой сплит
+nnoremap <Tab> <C-w>w
