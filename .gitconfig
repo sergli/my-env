@@ -1,0 +1,32 @@
+[user]
+	email = s.lisenkov@corp.badoo.com
+	name = Sergey Lisenkov
+[apply]
+	whitespaces = nowarn
+[core]
+	pager = less -FRSX
+[alias]
+	amend = commit --amend --no-edit
+    ch = !/home/slisenkov/git-helpers/git-ch.sh
+    rch = !/home/slisenkov/git-helpers/git-rch.sh
+    chm = checkout master
+    dad = !/home/slisenkov/git-helpers/git-dad.sh
+[color]
+	branch      = auto
+	diff        = auto
+	status      = auto
+	interactive = auto
+	ui          = auto
+[color "branch"]
+	current = blue bold reverse
+	local   = blue bold
+	remote  = red
+[color "diff"]
+	meta = cyan bold
+	frag = magenta bold
+	old  = red bold
+	new  = green bold
+[color "status"]
+	added     = magenta bold
+	changed   = green bold
+	untracked = white bold
