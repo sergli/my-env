@@ -1,3 +1,6 @@
+scriptencoding utf-8
+set encoding=utf-8
+
 set nocompatible	" be iMproved
 filetype off		" required !
 
@@ -56,12 +59,13 @@ set tabstop=4
 set shiftwidth=4
 set smarttab
 set autoindent
-set noexpandtab
+set expandtab
 set number
 set fencs=utf8,cp1251,latin1,default
 set listchars=eol:↲,tab:→→,trail:·,nbsp:↔
 
 colorscheme evening
+"colorscheme delek
 set background=dark
 "highlight Folded ctermbg=255 ctermfg=216
 highlight Folded ctermbg=255 ctermfg=darkred
@@ -80,34 +84,37 @@ set wildignore+=*.o,*/.git/*,*/.hg/*,*/.svn/*
 
 nmap <F2> :!php -l %<CR>
 nmap <F3> :!ctags -R<CR>
+" запрос к api.phtml - copy as curl, format
+    "nmap  <leader>f G$bbd2w0wPa --insecure /'{a$hikV:!python -mjson.tool-Jx0/Cookied2f'0/-Hi\n.n.n.n.n.n.n.n.n.n.n.
+    nmap  <leader>f G$bbd2w0wPa --insecure /'{a$hikV:!python -mjson.tool-Jx0:%s@ -H '[^Xx][^']*'@@g/-Hi\n.:noh
 
-"	Выделенное заключать в теги / кавычки
-vnoremap  s<b></b>hhhgP
-vnoremap  s""gPa	
+    "	Выделенное заключать в теги / кавычки
+    vnoremap  s<b></b>hhhgP
+    vnoremap  s""gPa	
 
-"Выделяем текст, потом ищем его
-vnoremap <C-r> "hy/<C-r>h
-
-
-" Easily modify vimrc
-nmap <leader>v :e $MYVIMRC<CR>
-" Apply vim configurations without restarting
-if has("autocmd")
-    augroup myvimrchooks
-        au!
-        autocmd BufWritePost .vimrc source ~/.vimrc
-    augroup END
-endif
+    "Выделяем текст, потом ищем его
+    vnoremap <C-r> "hy/<C-r>h
 
 
+    " Easily modify vimrc
+    nmap <leader>v :e $MYVIMRC<CR>
+    " Apply vim configurations without restarting
+    if has("autocmd")
+        augroup myvimrchooks
+            au!
+            autocmd BufWritePost .vimrc source ~/.vimrc
+        augroup END
+    endif
 
-" use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
-cmap w!! %!sudo tee > /dev/null %
 
-" Далее отсюда: https://github.com/bio/dotfiles
 
-" Automatically remove trailing whitespace
-autocmd BufWritePre *.php,*.py,*.css,*.js,*.md,*.txt :call Preserve("%s/\\s\\+$//e")
+    " use :w!! to write to a file using sudo if you forgot to 'sudo vim file'
+    cmap w!! %!sudo tee > /dev/null %
+
+    " Далее отсюда: https://github.com/bio/dotfiles
+
+    " Automatically remove trailing whitespace
+    " autocmd BufWritePre *.php,*.py,*.css,*.js,*.md,*.txt :call Preserve("%s/\\s\\+$//e")
 
 " Preserves the state
 function! Preserve(command)
@@ -154,17 +161,16 @@ call vundle#begin()
 "Bundle 'scrooloose/syntastic'
 
 
-" let Vudnle manage Vundle
-" required !
-Bundle 'gmarik/Vundle.vim'
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'vim-scripts/bufkill.vim'
+Plugin 'vim-scripts/bufkill.vim'
 	cnoremap bw BW
 
-Bundle 'joonty/vdebug'
-	let g:vdebug_options = {'server':	'0.0.0.0'}
+"Bundle 'joonty/vdebug'
+"	let g:vdebug_options = {'server':	'0.0.0.0'}
 
-Bundle 'tobyS/vmustache'
+Plugin 'tobyS/vmustache'
 
 "Bundle 'SirVer/ultisnips'
 
@@ -178,7 +184,7 @@ Bundle 'tobyS/vmustache'
 "	let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 "	nnoremap <buffer> <C-p> :call pdv#DocumentWithSnip()<CR>
 
-Bundle 'sumpygump/php-documentor-vim'
+Plugin 'sumpygump/php-documentor-vim'
 "	Old version
 	 au BufRead,BufNewFile *.php inoremap <buffer> <C-P> :call PhpDocSingle()<CR>
 	 au BufRead,BufNewFile *.php nnoremap <buffer> <C-P> :call PhpDocSingle()<CR>
@@ -187,9 +193,9 @@ Bundle 'sumpygump/php-documentor-vim'
 	let g:pdv_cfg_Author = 'Sergey Lisenkov <sergli@nigma.ru>'
 
 
-Bundle 'evanmiller/nginx-vim-syntax'
+Plugin 'evanmiller/nginx-vim-syntax'
 
-Bundle 'StanAngeloff/php.vim'
+Plugin 'StanAngeloff/php.vim'
 	" Виды комментов в php
 	autocmd FileType php set comments=s1:/*,mb:*,ex:*/,://,:#
 	let g:php_sql_query=2
@@ -197,7 +203,7 @@ Bundle 'StanAngeloff/php.vim'
 	" 1 - только функции, 2 - все пары {}
 	let g:php_folding=1
 
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 	let NERDTreeShowHidden=1
 	nmap <C-N>v :NERDTree<cr>
 	vmap <C-N>v <esc>:NERDTree<cr>i
@@ -207,7 +213,7 @@ Bundle 'scrooloose/nerdtree'
 	vmap <C-N>x <esc>:NERDTreeClose<cr>i
 	imap <C-N>x <esc>:NERDTreeClose<cr>i
 
-Bundle 'fholgado/minibufexpl.vim'
+Plugin 'fholgado/minibufexpl.vim'
 	let g:miniBufExplShowBufNumbers=0
 	let g:miniBufExplBRSplit = 0
 	" По стелочкам влево/вправо перемещаемся по 
@@ -217,9 +223,30 @@ Bundle 'fholgado/minibufexpl.vim'
 
 "Bundle 'noahfrederick/vim-noctu'
 
-Bundle '2072/PHP-Indenting-for-VIm'
+Plugin '2072/PHP-Indenting-for-VIm'
+Plugin 'uarun/vim-protobuf'
+Plugin 'vim-scripts/auto_autoread.vim'
 
-call vundle#end()
+Plugin 'udalov/kotlin-vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" По табу - фокус на другой сплит
+nnoremap <Tab> <C-w>w
+
 
 filetype on
 filetype plugin indent on	" required!
@@ -228,6 +255,5 @@ syntax on;
 set scrolloff=20
 
 set pastetoggle=<F12>
-"
-" По табу - фокус на другой сплит
-nnoremap <Tab> <C-w>w
+
+autocmd BufRead,BufNewFile ~/nginx/* set syntax=nginx
