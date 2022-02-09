@@ -1,0 +1,43 @@
+Host *
+    ForwardAgent yes
+    ServerAliveInterval 120
+    Compression yes
+    IdentityFile /home/?????????/.ssh/????_key
+    HashKnownHosts no
+
+Host logs1.?lan logs1.d?
+    RequestTTY yes
+    RemoteCommand cd /local/logs/sf; bash --login;
+
+Host dogs.?lan dogs.d?
+    RequestTTY yes
+    RemoteCommand cd /local/l??-???????-server && du -hs --time --time-style=+'%%Y-%%m-%%d_%%T' debug_????????_* | sort -k2.1; bash --login;
+
+Host dogs.mlan
+    HostName logs1.mlan
+Host dogs.ulan
+    HostName logs1.ulan
+Host dogs.plan
+    HostName logs1.plan
+Host dogs.d3
+    HostName logs1.d3
+Host dogs.d4
+    Hostname logs1.d4
+Host dogs.d5
+    Hostname logs1.d5
+
+Host uds uds.mlan
+    HostName shell1.mlan
+    RequestTTY yes
+    RemoteCommand bash --login -i /local/utils/?????ql;
+
+
+Host git.d?
+    User phpunit
+    IdentityFile ~/.ssh/phpunit_key
+
+Host git.d3
+    HostName www2.d3
+Host git.d4
+    HostName www2.d4
+
