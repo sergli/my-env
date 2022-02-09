@@ -1,0 +1,16 @@
+diff --git a/home/slisenkov/gitcompletion.txt b/etc/bash_completion.d/git-completion.sh
+index 01c2998..cc28a2e 100644
+--- a/home/slisenkov/gitcompletion.txt
++++ b/etc/bash_completion.d/git-completion.sh
+@@ -1033,7 +1033,10 @@ _git_checkout ()
+ 			track=''
+ 		fi
+ 
+-		__gitcomp_nl "$(__git_refs '' $track)"
++# Disable remote branches completion
++# https://stackoverflow.com/questions/6623649/disable-auto-completion-of-remote-branches-in-git-bash/43747486#43747486
++		__gitcomp_nl "$(__git_heads '' $track)"
++#		__gitcomp_nl "$(__git_refs '' $track)"
+ 
+ 		;;
+ 	esac
